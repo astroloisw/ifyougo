@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Domande e Semafori</title>
+  <style>
+    body { font-family: sans-serif; padding: 1rem; background: #f9f9f9; }
+    h1 { font-size: 1.6rem; margin-bottom: 0.5rem; }
+    .nav { margin-bottom: 1rem; }
+    button { padding: 0.4rem 1rem; margin-right: 1rem; cursor: pointer; }
+    .section { background: white; border-radius: 8px; padding: 1rem; margin-bottom: 1rem; box-shadow: 0 2px 5px rgba(0,0,0,0.1);} 
+    ul { list-style: none; padding-left: 0; }
+    li { margin-bottom: 0.4rem; }
+    .domanda { display: flex; align-items: center; }
+    .semaforo { width: 16px; height: 16px; border-radius: 50%; display: inline-block; margin-right: 0.5rem; }
+    .rosso { background: #d9534f; }
+    .giallo { background: #f0ad4e; }
+    .verde { background: #5cb85c; }
+    .descrizione { margin-left: 22px; font-size: 0.9rem; color: #555; }
+  </style>
+</head>
+<body>
+  <h1>Domande del giorno <span id="current-date"></span></h1>
+  <div class="nav">
+    <button id="prev-day">&lt; Giorno precedente</button>
+    <button id="next-day">Giorno successivo &gt;</button>
+  </div>
+  <div id="content">
+    <div class="section" id="section-generiche">
+      <h2>Domande generiche</h2>
+      <ul id="list-generiche"></ul>
+    </div>
+    <div class="section" id="section-personalizzate">
+      <h2>Domande personalizzate</h2>
+      <ul id="list-personalizzate"></ul>
+    </div>
+  </div>
+<script>
+const dataGeneriche = {
+  "11/08/2025": [{titolo: "fare una telefonata importante", descrizione: "", colore: 3, tipologia: "comunicazione", motivo: ""},{titolo: "eseguire una compravendita", descrizione: "", colore: 3, tipologia: "atti", motivo: ""},{titolo: "firmare un documento importante(contratto)", descrizione: "", colore: 3, tipologia: "atti", motivo: ""},{titolo: "fare una conferenza o una presentazione in pubblico", descrizione: "", colore: 3, tipologia: "comunicazione", motivo: ""},{titolo: "fare una comunicazione importante", descrizione: "", colore: 3, tipologia: "comunicazione", motivo: ""},{titolo: "fare un piccolo viaggio di lavoro o di piacere", descrizione: "", colore: 3, tipologia: "viaggi", motivo: ""},{titolo: "fare un esame universitario", descrizione: "", colore: 3, tipologia: "studi", motivo: ""},{titolo: "partecipare a un concorso", descrizione: "", colore: 3, tipologia: "concorsi", motivo: ""},{titolo: "presentare un libro", descrizione: "", colore: 3, tipologia: "comunicazione", motivo: ""},{titolo: "inviare una missiva importante", descrizione: "", colore: 3, tipologia: "comunicazione", motivo: ""},{titolo: "cercare un incontro con un potenziale partner", descrizione: "", colore: 3, tipologia: "relazioni", motivo: ""},{titolo: "uscire con un/una ragazzo/ragazza", descrizione: "", colore: 3, tipologia: "relazioni", motivo: ""},{titolo: "fissare una cena romantica", descrizione: "", colore: 3, tipologia: "relazioni", motivo: ""},{titolo: "festeggiare un compleanno", descrizione: "", colore: 3, tipologia: "feste", motivo: ""},{titolo: "celebrare un matrimonio", descrizione: "", colore: 3, tipologia: "relazioni", motivo: ""},{titolo: "celebrare un fidanzamento", descrizione: "", colore: 3, tipologia: "relazioni", motivo: ""},{titolo: "fare un regalo sentimentale", descrizione: "", colore: 3, tipologia: "relazioni", motivo: ""},{titolo: "esprimere i propri sentimenti a qualcuno", descrizione: "", colore: 3, tipologia: "relazioni", motivo: ""},{titolo: "dichiarare un amore", descrizione: "", colore: 3, tipologia: "relazioni", motivo: ""},{titolo: "cercare una notte d’amore (più per le donne)", descrizione: "", colore: 3, tipologia: "relazioni", motivo: ""},{titolo: "come va l'amore oggi", descrizione: "", colore: 3, tipologia: "relazioni", motivo: ""},{titolo: "partire all’avventura", descrizione: "", colore: 1, tipologia: "sport", motivo: "NO: Marte opposto a Saturno"},{titolo: "partecipare a una gara sportiva", descrizione: "", colore: 1, tipologia: "sport", motivo: "NO: Marte opposto a Saturno"},{titolo: "prendersi un rischio in spostamenti su motori a terra", descrizione: "", colore: 1, tipologia: "viaggi", motivo: "NO: Marte opposto a Saturno"},{titolo: "prendersi un rischio in spostamenti su motori in volo", descrizione: "", colore: 1, tipologia: "viaggi", motivo: "NO: Marte opposto a Saturno"},{titolo: "riparare un motore", descrizione: "", colore: 1, tipologia: "mezzi", motivo: "NO: Marte opposto a Saturno"},{titolo: "fare un lavoro gravoso", descrizione: "", colore: 1, tipologia: "lavoro", motivo: "NO: Marte opposto a Saturno"},{titolo: "combattere", descrizione: "", colore: 1, tipologia: "combattere", motivo: "NO: Marte opposto a Saturno"},{titolo: "dichiarare guerra o battaglia a qualcuno o qualcosa", descrizione: "", colore: 1, tipologia: "combattere", motivo: "NO: Marte opposto a Saturno"},{titolo: "andare a caccia", descrizione: "", colore: 1, tipologia: "combattere", motivo: "NO: Marte opposto a Saturno"},{titolo: "andare in un posto pericoloso", descrizione: "", colore: 1, tipologia: "viaggi", motivo: "NO: Marte opposto a Saturno"},{titolo: "vincere un trofeo", descrizione: "", colore: 1, tipologia: "sport", motivo: "NO: Marte opposto a Saturno"},{titolo: "cercare un avventura amorosa", descrizione: "", colore: 1, tipologia: "relazioni", motivo: "NO: Marte opposto a Saturno"},{titolo: "cercare di conquistare una donna (più per il maschio)", descrizione: "", colore: 1, tipologia: "relazioni", motivo: "NO: Marte opposto a Saturno"},],
+};
+const dataPersonalizzate = {
+  "11/08/2025": [{titolo: "posso giocare in borsa", descrizione: "", colore: 3, tipologia: "borsa", motivo: ""},],
+};
+const dates = Object.keys(dataGeneriche).sort((a,b) => {
+  const [d1,m1,y1] = a.split('/').map(Number);
+  const [d2,m2,y2] = b.split('/').map(Number);
+  return new Date(y1,m1-1,d1) - new Date(y2,m2-1,d2);
+});
+let currentIndex = 0;
+if(dates.length === 0) {
+  document.getElementById('content').innerHTML = '<p>Nessun dato disponibile</p>';
+}
+function coloreClass(c) {
+  if(c === 1) return 'rosso';
+  if(c === 2) return 'giallo';
+  if(c === 3) return 'verde';
+  return '';
+}
+function groupByTipologia(lista) {
+  const map = {};
+  lista.forEach(d => {
+    const tip = d.tipologia || 'Senza tipologia';
+    if(!map[tip]) map[tip] = [];
+    map[tip].push(d);
+  });
+  return map;
+}
+function renderDay(idx) {
+  if(idx < 0 || idx >= dates.length) return;
+  currentIndex = idx;
+  const date = dates[idx];
+  document.getElementById('current-date').textContent = date;
+  const gen = dataGeneriche[date] || [];
+  const pers = dataPersonalizzate[date] || [];
+  const genList = document.getElementById('list-generiche');
+  const persList = document.getElementById('list-personalizzate');
+  genList.innerHTML = '';
+  persList.innerHTML = '';
+  const genGrouped = groupByTipologia(gen);
+  const persGrouped = groupByTipologia(pers);
+  for(const tip in genGrouped) {
+    const h3 = document.createElement('h3');
+    h3.textContent = tip;
+    genList.appendChild(h3);
+    const ul = document.createElement('ul');
+    genGrouped[tip].forEach(d => {
+      const li = document.createElement('li');
+      li.innerHTML = `<div class='domanda'><span class='semaforo ${coloreClass(d.colore)}'></span><b>${d.titolo}</b></div>`;
+      if(d.descrizione) {
+        const desc = document.createElement('div');
+        desc.className = 'descrizione';
+        desc.textContent = d.descrizione;
+        li.appendChild(desc);
+      }
+      ul.appendChild(li);
+    });
+    genList.appendChild(ul);
+  }
+  for(const tip in persGrouped) {
+    const h3 = document.createElement('h3');
+    h3.textContent = tip;
+    persList.appendChild(h3);
+    const ul = document.createElement('ul');
+    persGrouped[tip].forEach(d => {
+      const li = document.createElement('li');
+      li.innerHTML = `<div class='domanda'><span class='semaforo ${coloreClass(d.colore)}'></span><b>${d.titolo}</b></div>`;
+      if(d.descrizione) {
+        const desc = document.createElement('div');
+        desc.className = 'descrizione';
+        desc.textContent = d.descrizione;
+        li.appendChild(desc);
+      }
+      ul.appendChild(li);
+    });
+    persList.appendChild(ul);
+  }
+}
+document.getElementById('prev-day').onclick = () => {
+  if(currentIndex > 0) renderDay(currentIndex - 1);
+};
+document.getElementById('next-day').onclick = () => {
+  if(currentIndex < dates.length - 1) renderDay(currentIndex + 1);
+};
+renderDay(currentIndex);
+</script>
+</body></html>
