@@ -38,6 +38,10 @@
       <h2>Domande personalizzate</h2>
       <ul id="list-personalizzate"></ul>
     </div>
+    <div class="section" id="section-fertili">
+      <h2>Giorni fertili</h2>
+      <ul id="list-fertili"></ul>
+    </div>
   </div>
 <script>
 const dataGeneriche = {
@@ -82,13 +86,13 @@ const dataGeneriche = {
 };
 const dataPersonalizzate = {
   "10/09/2025": [{titolo: "posso giocare in borsa", descrizione: "", colore: 1, tipologia: "borsa", motivo: "NO: Giove quadrato a Marte"},],
-  "16/08/2025": [{titolo: "posso giocare in borsa", descrizione: "", colore: 1, tipologia: "borsa", motivo: "NO: Marte opposto a Saturno"},],
+  "16/08/2025": [{titolo: "posso giocare in borsa", descrizione: "", colore: 3, tipologia: "borsa", motivo: ""},],
   "30/08/2025": [{titolo: "posso giocare in borsa", descrizione: "", colore: 1, tipologia: "borsa", motivo: "NO: Giove quadrato a Marte"},],
-  "15/08/2025": [{titolo: "posso giocare in borsa", descrizione: "", colore: 1, tipologia: "borsa", motivo: "NO: Marte opposto a Saturno"},],
+  "15/08/2025": [{titolo: "posso giocare in borsa", descrizione: "", colore: 3, tipologia: "borsa", motivo: ""},],
   "11/09/2025": [{titolo: "posso giocare in borsa", descrizione: "", colore: 1, tipologia: "borsa", motivo: "NO: Giove quadrato a Marte"},],
-  "18/08/2025": [{titolo: "posso giocare in borsa", descrizione: "", colore: 1, tipologia: "borsa", motivo: "NO: Marte opposto a Saturno"},],
-  "14/08/2025": [{titolo: "posso giocare in borsa", descrizione: "", colore: 1, tipologia: "borsa", motivo: "NO: Marte opposto a Saturno"},],
-  "13/08/2025": [{titolo: "posso giocare in borsa", descrizione: "", colore: 1, tipologia: "borsa", motivo: "NO: Marte opposto a Saturno"},],
+  "18/08/2025": [{titolo: "posso giocare in borsa", descrizione: "", colore: 3, tipologia: "borsa", motivo: ""},],
+  "14/08/2025": [{titolo: "posso giocare in borsa", descrizione: "", colore: 3, tipologia: "borsa", motivo: ""},],
+  "13/08/2025": [{titolo: "posso giocare in borsa", descrizione: "", colore: 3, tipologia: "borsa", motivo: ""},],
   "19/08/2025": [{titolo: "posso giocare in borsa", descrizione: "", colore: 1, tipologia: "borsa", motivo: "NO: Giove quadrato a Marte"},],
   "31/08/2025": [{titolo: "posso giocare in borsa", descrizione: "", colore: 1, tipologia: "borsa", motivo: "NO: Giove quadrato a Marte"},],
   "28/08/2025": [{titolo: "posso giocare in borsa", descrizione: "", colore: 1, tipologia: "borsa", motivo: "NO: Giove quadrato a Marte"},],
@@ -99,28 +103,29 @@ const dataPersonalizzate = {
   "26/08/2025": [{titolo: "posso giocare in borsa", descrizione: "", colore: 1, tipologia: "borsa", motivo: "NO: Giove quadrato a Marte"},],
   "04/09/2025": [{titolo: "posso giocare in borsa", descrizione: "", colore: 1, tipologia: "borsa", motivo: "NO: Giove quadrato a Marte"},],
   "25/08/2025": [{titolo: "posso giocare in borsa", descrizione: "", colore: 1, tipologia: "borsa", motivo: "NO: Giove quadrato a Marte"},],
-  "19/09/2025": [{titolo: "posso giocare in borsa", descrizione: "", colore: 1, tipologia: "borsa", motivo: "NO: Giove quadrato a Marte"},],
+  "19/09/2025": [{titolo: "posso giocare in borsa", descrizione: "", colore: 1, tipologia: "borsa", motivo: "NO: Mercurio opposto a Saturno"},],
   "03/09/2025": [{titolo: "posso giocare in borsa", descrizione: "", colore: 1, tipologia: "borsa", motivo: "NO: Giove quadrato a Marte"},],
   "23/08/2025": [{titolo: "posso giocare in borsa", descrizione: "", colore: 1, tipologia: "borsa", motivo: "NO: Giove quadrato a Marte"},],
-  "18/09/2025": [{titolo: "posso giocare in borsa", descrizione: "", colore: 1, tipologia: "borsa", motivo: "NO: Giove quadrato a Marte"},],
+  "18/09/2025": [{titolo: "posso giocare in borsa", descrizione: "", colore: 1, tipologia: "borsa", motivo: "NO: Mercurio opposto a Saturno"},],
   "24/08/2025": [{titolo: "posso giocare in borsa", descrizione: "", colore: 1, tipologia: "borsa", motivo: "NO: Giove quadrato a Marte"},],
   "21/08/2025": [{titolo: "posso giocare in borsa", descrizione: "", colore: 1, tipologia: "borsa", motivo: "NO: Giove quadrato a Marte"},],
-  "17/09/2025": [{titolo: "posso giocare in borsa", descrizione: "", colore: 1, tipologia: "borsa", motivo: "NO: Giove quadrato a Marte"},],
+  "17/09/2025": [{titolo: "posso giocare in borsa", descrizione: "", colore: 1, tipologia: "borsa", motivo: "NO: Mercurio opposto a Saturno"},],
   "01/09/2025": [{titolo: "posso giocare in borsa", descrizione: "", colore: 1, tipologia: "borsa", motivo: "NO: Giove quadrato a Marte"},],
   "22/08/2025": [{titolo: "posso giocare in borsa", descrizione: "", colore: 1, tipologia: "borsa", motivo: "NO: Giove quadrato a Marte"},],
   "02/09/2025": [{titolo: "posso giocare in borsa", descrizione: "", colore: 1, tipologia: "borsa", motivo: "NO: Giove quadrato a Marte"},],
-  "16/09/2025": [{titolo: "posso giocare in borsa", descrizione: "", colore: 1, tipologia: "borsa", motivo: "NO: Giove quadrato a Marte"},],
+  "16/09/2025": [{titolo: "posso giocare in borsa", descrizione: "", colore: 1, tipologia: "borsa", motivo: "NO: Mercurio opposto a Saturno"},],
   "08/09/2025": [{titolo: "posso giocare in borsa", descrizione: "", colore: 1, tipologia: "borsa", motivo: "NO: Giove quadrato a Marte"},],
-  "15/09/2025": [{titolo: "posso giocare in borsa", descrizione: "", colore: 1, tipologia: "borsa", motivo: "NO: Giove quadrato a Marte"},],
-  "14/09/2025": [{titolo: "posso giocare in borsa", descrizione: "", colore: 1, tipologia: "borsa", motivo: "NO: Giove quadrato a Marte"},],
+  "15/09/2025": [{titolo: "posso giocare in borsa", descrizione: "", colore: 1, tipologia: "borsa", motivo: "NO: Mercurio opposto a Saturno"},],
+  "14/09/2025": [{titolo: "posso giocare in borsa", descrizione: "", colore: 1, tipologia: "borsa", motivo: "NO: Mercurio opposto a Saturno"},],
   "29/08/2025": [{titolo: "posso giocare in borsa", descrizione: "", colore: 1, tipologia: "borsa", motivo: "NO: Giove quadrato a Marte"},],
   "09/09/2025": [{titolo: "posso giocare in borsa", descrizione: "", colore: 1, tipologia: "borsa", motivo: "NO: Giove quadrato a Marte"},],
   "12/09/2025": [{titolo: "posso giocare in borsa", descrizione: "", colore: 1, tipologia: "borsa", motivo: "NO: Giove quadrato a Marte"},],
-  "20/08/2025": [{titolo: "posso giocare in borsa", descrizione: "", colore: 1, tipologia: "borsa", motivo: "NO: Marte opposto a Saturno"},],
-  "17/08/2025": [{titolo: "posso giocare in borsa", descrizione: "", colore: 1, tipologia: "borsa", motivo: "NO: Marte opposto a Saturno"},],
+  "20/08/2025": [{titolo: "posso giocare in borsa", descrizione: "", colore: 3, tipologia: "borsa", motivo: ""},],
+  "17/08/2025": [{titolo: "posso giocare in borsa", descrizione: "", colore: 3, tipologia: "borsa", motivo: ""},],
   "13/09/2025": [{titolo: "posso giocare in borsa", descrizione: "", colore: 1, tipologia: "borsa", motivo: "NO: Giove quadrato a Marte"},],
 };
-const dataFertility = null;
+const dataFertility = {
+  "10/09/2025": {fertile: true, female: false, male: true},  "16/08/2025": {fertile: false, female: true, male: true},  "30/08/2025": {fertile: false, female: true, male: true},  "15/08/2025": {fertile: false, female: true, male: false},  "11/09/2025": {fertile: false, female: true, male: false},  "18/08/2025": {fertile: false, female: true, male: true},  "14/08/2025": {fertile: false, female: true, male: true},  "13/08/2025": {fertile: false, female: false, male: true},  "19/08/2025": {fertile: false, female: true, male: false},  "31/08/2025": {fertile: false, female: false, male: true},  "28/08/2025": {fertile: false, female: true, male: false},  "07/09/2025": {fertile: false, female: true, male: false},  "27/08/2025": {fertile: false, female: false, male: true},  "06/09/2025": {fertile: false, female: true, male: true},  "05/09/2025": {fertile: false, female: false, male: true},  "26/08/2025": {fertile: false, female: false, male: true},  "04/09/2025": {fertile: true, female: true, male: true},  "25/08/2025": {fertile: false, female: true, male: true},  "19/09/2025": {fertile: false, female: true, male: true},  "03/09/2025": {fertile: false, female: true, male: false},  "23/08/2025": {fertile: false, female: true, male: true},  "18/09/2025": {fertile: false, female: false, male: true},  "24/08/2025": {fertile: false, female: true, male: false},  "21/08/2025": {fertile: false, female: false, male: true},  "17/09/2025": {fertile: false, female: true, male: true},  "01/09/2025": {fertile: false, female: false, male: true},  "22/08/2025": {fertile: false, female: false, male: true},  "02/09/2025": {fertile: false, female: true, male: false},  "16/09/2025": {fertile: false, female: true, male: false},  "08/09/2025": {fertile: false, female: true, male: true},  "15/09/2025": {fertile: false, female: true, male: false},  "14/09/2025": {fertile: false, female: false, male: true},  "29/08/2025": {fertile: false, female: true, male: false},  "09/09/2025": {fertile: false, female: false, male: true},  "12/09/2025": {fertile: false, female: true, male: false},  "20/08/2025": {fertile: false, female: true, male: false},  "17/08/2025": {fertile: false, female: false, male: true},  "13/09/2025": {fertile: false, female: false, male: true},};
 const dates = Object.keys(dataGeneriche).sort((a,b) => {
   const [d1,m1,y1] = a.split('/').map(Number);
   const [d2,m2,y2] = b.split('/').map(Number);
