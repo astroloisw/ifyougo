@@ -128,4 +128,100 @@ const dataPersonalizzate = {
   "13/09/2025": [{titolo: "posso giocare in borsa", descrizione: "", colore: 2, tipologia: "borsa", motivo: "ATTENZIONE: cuspide Saturno di 296 quadrato a Marte"},{titolo: "situazione familiare", descrizione: "", colore: 3, tipologia: "relazioni", motivo: ""},{titolo: "avventure amorose", descrizione: "", colore: 3, tipologia: "relazioni", motivo: ""},{titolo: "situazione matrimoniale", descrizione: "", colore: 3, tipologia: "relazioni", motivo: ""},],
 };
 const dataFertility = {
-  "10/09/2025": {fertile: false, female: false, male: true},  "16/08/2025": {fertile: false, female: true, male: true},  "30/08/2025": {fertile: false, female: true, male: true},  "15/08/2025": {fertile: false, female: true, male: false},  "11/09/2025": {fertile: false, female: true, male: false},  "18/08/2025": {fertile: false, female: true, male: true},  "14/08/2025": {fertile: false, female: true, male: true},  "13/08/2025": {fertile: false, female: false, male: true},  "19/08/2025": {fertile: false, female: true, male: false},  "31/08/2025": {fertile: false, female: false, male: true},  "28/08/2025": {fertile: false, female: true, male: false},  "07/09/2025": {fertile: false, female: true, male: false},  "27/08/2025": {fertile: false, female: false, male: true},  "06/09/2025": {fertile: false, female: true, male: true},  "05/09/2025": {fertile: false, female: false, male: true},  "26/08/2025": {fertile: false, female: false, male: true},  "04/09/2025": {fertile: false, female: true, male: true},  "25/08/2025": {fertile: false, female: true, male: true},  "19/09/2025": {fertile: false, female: true, male: true},  "03/09/2025": {fertile: false, female: true, male: false},  "23/08/2025": {fertile: false, female: true, male: true},  "18/09/2025": {fertile: false, female: false, male: true},  "24/08/2025": {fertile: false, female: true, male: false},  "21/08/2025": {fertile: false, female: false, male: true},  "17/09/2025": {fertile: false, female: true, male: true},  "01/09/2025": {fertile: false, female: false, male: true},  "22/08/2025": {fertile: false, female: false, male: true},  "02/09/2025": {fertile: false, female: true, male: false},  "16/09/2025": {fertile: true, female: true, male
+  "10/09/2025": {fertile: false, female: false, male: true},  "16/08/2025": {fertile: false, female: true, male: true},  "30/08/2025": {fertile: false, female: true, male: true},  "15/08/2025": {fertile: false, female: true, male: false},  "11/09/2025": {fertile: false, female: true, male: false},  "18/08/2025": {fertile: false, female: true, male: true},  "14/08/2025": {fertile: false, female: true, male: true},  "13/08/2025": {fertile: false, female: false, male: true},  "19/08/2025": {fertile: false, female: true, male: false},  "31/08/2025": {fertile: false, female: false, male: true},  "28/08/2025": {fertile: false, female: true, male: false},  "07/09/2025": {fertile: false, female: true, male: false},  "27/08/2025": {fertile: false, female: false, male: true},  "06/09/2025": {fertile: false, female: true, male: true},  "05/09/2025": {fertile: false, female: false, male: true},  "26/08/2025": {fertile: false, female: false, male: true},  "04/09/2025": {fertile: false, female: true, male: true},  "25/08/2025": {fertile: false, female: true, male: true},  "19/09/2025": {fertile: false, female: true, male: true},  "03/09/2025": {fertile: false, female: true, male: false},  "23/08/2025": {fertile: false, female: true, male: true},  "18/09/2025": {fertile: false, female: false, male: true},  "24/08/2025": {fertile: false, female: true, male: false},  "21/08/2025": {fertile: false, female: false, male: true},  "17/09/2025": {fertile: false, female: true, male: true},  "01/09/2025": {fertile: false, female: false, male: true},  "22/08/2025": {fertile: false, female: false, male: true},  "02/09/2025": {fertile: false, female: true, male: false},  "16/09/2025": {fertile: true, female: true, male: false},  "08/09/2025": {fertile: false, female: true, male: true},  "15/09/2025": {fertile: false, female: true, male: false},  "14/09/2025": {fertile: false, female: false, male: true},  "29/08/2025": {fertile: false, female: true, male: false},  "09/09/2025": {fertile: false, female: false, male: true},  "12/09/2025": {fertile: false, female: true, male: false},  "20/08/2025": {fertile: false, female: true, male: false},  "17/08/2025": {fertile: true, female: false, male: true},  "13/09/2025": {fertile: false, female: false, male: true},};
+const dates = Object.keys(dataGeneriche).sort((a,b) => {
+  const [d1,m1,y1] = a.split('/').map(Number);
+  const [d2,m2,y2] = b.split('/').map(Number);
+  return new Date(y1,m1-1,d1) - new Date(y2,m2-1,d2);
+});
+let currentIndex = 0;
+if(dates.length === 0) { document.getElementById('content').innerHTML = '<p>Nessun dato disponibile</p>'; }
+else {
+  const today = new Date();
+  const todayStr = today.getDate().toString().padStart(2, '0') + '/' + (today.getMonth() + 1).toString().padStart(2, '0') + '/' +today.getFullYear();
+  const idxToday = dates.indexOf(todayStr);
+  currentIndex = idxToday >= 0 ? idxToday : 0;
+}
+function coloreClass(c) {
+  if(c === 1) return 'rosso';
+  if(c === 2) return 'giallo';
+  if(c === 3) return 'verde';
+  return '';
+}
+function groupByPianeti(lista) {
+  const map = {};
+  lista.forEach(d => {
+    const key = d.pianeti || 'Senza pianeti di riferimento';
+    if(!map[key]) map[key] = [];
+    map[key].push(d);
+  });
+  return map;
+}
+function groupByTipologia(lista) {
+  const map = {};
+  lista.forEach(d => {
+    const tip = d.tipologia || 'Senza tipologia';
+    if(!map[tip]) map[tip] = [];
+    map[tip].push(d);
+  });
+  return map;
+}
+function showMotivo(motivo) {
+  if(!motivo) alert('Tutto libero'); else alert(motivo);
+}
+function renderDay(idx) {
+  if(idx < 0) { alert('Inizio dei giorni calcolati'); return; }
+  if(idx >= dates.length) { alert('Fine dei giorni calcolati'); return; }
+  currentIndex = idx;
+  const date = dates[idx];
+  document.getElementById('current-date').textContent = date;
+  const gen = dataGeneriche[date] || [];
+  const pers = dataPersonalizzate[date] || [];
+  const genList = document.getElementById('list-generiche');
+  const persList = document.getElementById('list-personalizzate');
+  genList.innerHTML = '';
+  persList.innerHTML = '';
+  const genGrouped = groupByPianeti(gen);
+  const persGrouped = groupByTipologia(pers);
+  for(const key in genGrouped) {
+    const h3 = document.createElement('h3'); h3.textContent = key; genList.appendChild(h3);
+    const ul = document.createElement('ul');
+    genGrouped[key].forEach(d => {
+      const li = document.createElement('li');
+      li.innerHTML = `<div class='domanda'><span class='semaforo ${coloreClass(d.colore)}'></span><a class='domanda-link' onclick='showMotivo("${d.motivo}")'><b>${d.titolo}</b></a></div>`;
+      if(d.descrizione) li.innerHTML += `<div class='descrizione'><a class='descrizione-link' onclick='showMotivo("${d.motivo}")'>${d.descrizione}</a></div>`;
+      ul.appendChild(li);
+    });
+    genList.appendChild(ul);
+  }
+  for(const tip in persGrouped) {
+    const h3 = document.createElement('h3'); h3.textContent = tip; persList.appendChild(h3);
+    const ul = document.createElement('ul');
+    persGrouped[tip].forEach(d => {
+      const li = document.createElement('li');
+      li.innerHTML = `<div class='domanda'><span class='semaforo ${coloreClass(d.colore)}'></span><a class='domanda-link' onclick='showMotivo("${d.motivo}")'><b>${d.titolo}</b></a></div>`;
+      if(d.descrizione) li.innerHTML += `<div class='descrizione'><a class='descrizione-link' onclick='showMotivo("${d.motivo}")'>${d.descrizione}</a></div>`;
+      ul.appendChild(li);
+    });
+    persList.appendChild(ul);
+  }
+  if(dataFertility) {
+    const fertList = document.getElementById('list-fertili'); fertList.innerHTML = '';
+    const info = dataFertility[date];
+    if(info && info.fertile) {
+      const li = document.createElement('li');
+      li.innerHTML = `<div class='domanda'><span class='semaforo verde'></span><b>È un giorno fertile</b>${info.female ? '<span class="pallino-rosa"></span>' : ''}${info.male ? '<span class="pallino-azzurro"></span>' : ''}</div>`;
+      fertList.appendChild(li);
+    }
+    if(info && !info.fertile) {
+      const li = document.createElement('li');
+      li.innerHTML = `<div class='domanda'><span class='semaforo rosso'></span><b>Non è un giorno fertile</b></div>`;
+      fertList.appendChild(li);
+    }
+  }
+}
+document.getElementById('prev-day').onclick = () => renderDay(currentIndex - 1);
+document.getElementById('next-day').onclick = () => renderDay(currentIndex + 1);
+renderDay(currentIndex);
+</script>
+</body></html>
