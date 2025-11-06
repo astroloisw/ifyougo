@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang='it'>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>Piano Dieta Settimanale</title>
+<style>
+body {font-family: 'Segoe UI', sans-serif; background:#fafafa; margin:0; padding:20px; color:#333;}
+h1 {text-align:center; margin-bottom:20px;}
+.giorni {display:flex; flex-wrap:wrap; justify-content:center; gap:10px;}
+.giorno-btn {background:#0078d7; color:white; border:none; border-radius:8px; padding:12px 20px; font-size:16px; cursor:pointer; transition:background 0.3s;}
+.giorno-btn:hover {background:#005fa3;}
+.modal {display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); justify-content:center; align-items:center;}
+.modal-content {background:white; padding:20px; border-radius:10px; width:90%; max-width:800px; max-height:90%; overflow-y:auto; box-shadow:0 4px 12px rgba(0,0,0,0.2); animation:fadeIn 0.3s ease-in-out;}
+@keyframes fadeIn {from{opacity:0; transform:scale(0.95);} to{opacity:1; transform:scale(1);} }
+.close-btn {float:right; font-size:22px; cursor:pointer; color:#777;}
+.close-btn:hover {color:black;}
+.pasto {margin-top:20px; padding:10px; border-top:2px solid #ddd;}
+.pasto h2 {color:#0078d7; margin-bottom:10px;}
+.opzioni {display:flex; flex-wrap:wrap; gap:10px;}
+.card {background:#fefefe; border:1px solid #ddd; border-radius:8px; padding:10px; width:calc(33% - 10px); box-shadow:0 2px 5px rgba(0,0,0,0.1);}
+.card h3 {font-size:14px; margin-bottom:5px; color:#444;}
+.card ul {margin:0; padding-left:18px;}
+.card li {font-size:13px; margin-bottom:2px;}
+@media (max-width:700px){.card{width:100%;}}
+</style>
+</head>
+<body>
+<h1>Piano Dieta Settimanale</h1>
+<div class='giorni'>
+<button class='giorno-btn' onclick='apriModal(1)'>Giorno 1</button>
+<button class='giorno-btn' onclick='apriModal(2)'>Giorno 2</button>
+<button class='giorno-btn' onclick='apriModal(3)'>Giorno 3</button>
+<button class='giorno-btn' onclick='apriModal(4)'>Giorno 4</button>
+<button class='giorno-btn' onclick='apriModal(5)'>Giorno 5</button>
+<button class='giorno-btn' onclick='apriModal(6)'>Giorno 6</button>
+<button class='giorno-btn' onclick='apriModal(7)'>Giorno 7</button>
+</div>
+<div id='modal1' class='modal'>
+<div class='modal-content'>
+<span class='close-btn' onclick='chiudiModal(1)'>&times;</span>
+<h2>Giorno 1</h2>
+<div class='pasto'>
+<h2>Colazione</h2>
+<div class='opzioni'>
+<div class='card'>
+<h3>Opzione 1</h3>
+<ul>
+<li>Latte - 200 g</li>
+<li>Caffè amaro</li>
+<li>Alce Nero granola - 10 g</li>
+<li>Avena - 10 g</li>
+</ul>
+</div>
+<div class='card'>
+<h3>Opzione 2</h3>
+<ul>
+<li>Latte - 200 g</li>
+<li>Caffè amaro</li>
+<li>Pane - 50 g</li>
+<li>Marmellata</li>
+</ul>
+</div>
+<div class='card'>
+<h3>Opzione 3</h3>
+<ul>
+<li>Latte - 200 g</li>
+<li>Caffè (1 cucchiaio zucchero)</li>
+<li>Fiocchi di avena - 50 g</li>
+<li>Spolverata cacao amaro</li>
+</ul>
+</div>
+</div></div>
+<div class='pasto'>
+<h2>Pranzo</h2>
+<div class='opzioni'>
+<div class='card'>
+<h3>Opzione 1 - Insalata mista con uovo sodo</h3>
+<ul>
+<li>Un uovo sodo / in camicia - 60 g</li>
+<li>Ceci lessati - 100 g</li>
+<li>Pomodorini, sedano, rucola - 200 g</li>
+<li>Pane - 60 g</li>
+<li>Cucchiaio olio - 1 g</li>
+</ul>
+</div>
+<div class='card'>
+<h3>Opzione 2 - Insalata mista con tonno OPPURE formaggio</h3>
+<ul>
+<li>Tonno al naturale - 80 g</li>
+<li>Formaggio fresco (mozz., ricotta, stracchino) - 100 g</li>
+<li>Ceci lessati - 100 g</li>
+<li>Pomodorini, sedano, rucola - 200 g</li>
+<li>Pane - 60 g</li>
+<li>Cucchiaio olio - 1 g</li>
+</ul>
+</div>
+<div class='card'>
+<h3>Opzione 3</h3>
+<ul>
+</ul>
+</div>
+</div></div>
+<div class='pasto'>
+<h2>Cena</h2>
+<div class='opzioni'>
+<div class='card'>
+<h3>Opzione 1 - Pesce spada alla piastra con peperoni al forno</h3>
+<ul>
+<li>Trancio di pesce spada/tonno/salmone - 200 g</li>
+<li>Limone/lime, pepe</li>
+<li>Peperoni - 250 g</li>
+<li>Aceto e capperi</li>
+<li>Pane - 60 g</li>
+<li>Cucchiaio olio - 1 g</li>
+</ul>
+</div>
+<div class='card'>
+<h3>Opzione 2</h3>
+<ul>
+</ul>
+</div>
+<div class='card'>
+<h3>Opzione 3</h3>
+<ul>
+</ul>
+</div>
+</div></div>
+</div></div>
+<div id='modal2' class='modal'>
+<div class='modal-content'>
+<span class='close-btn' onclick='chiudiModal(2)'>&times;</span>
+<h2>Giorno 2</h2>
+<div class='pasto'>
+<h2>Colazione</h2>
+<div class='opzioni'>
+<div class='card'>
+<h3>Opzione 1</h3>
+<ul>
+<li>Latte - 200 g</li>
+<li>Caffè amaro</li>
+<li>Alce Nero granola - 10 g</li>
+<li>Avena - 10 g</li>
+</ul>
+</div>
+<div class='card'>
+<h3>Opzione 2</h3>
+<ul>
+<li>Latte - 200 g</li>
+<li>Caffè amaro</li>
+<li>Pane - 50 g</li>
+<li>Marmellata</li>
+</ul>
+</div>
+<div class='card'>
+<h3>Opzione 3</h3>
+<ul>
+<li>Latte - 200 g</li>
+<li>Caffè (1 cucchiaio zucchero)</li>
+<li>Fiocchi di avena - 50 g</li>
+<li>Spolverata cacao amaro</li>
+</ul>
+</div>
+</div></div>
+<div class='pasto'>
+<h2>Pranzo</h2>
+<div class='opzioni'>
+<div class='card'>
+<h3>Opzione 1 - Riso basmati con peperoni al forno</h3>
+<ul>
+<li>Riso basmati o riso nero - 70 g</li>
+<li>Peperoni al forno con capperi - 200 g</li>
+<li>Parmigiano o pecorino a scaglie - 20 g</li>
+<li>Cucchiaio olio - 1 g</li>
+</ul>
+</div>
+<div class='card'>
+<h3>Opzione 2 - Minestrone serio</h3>
+<ul>
+<li>Verdure di stagione: verze, zucca, carote, bietole</li>
+<li>Sedano, cipolla, pomodori, finocchi etc</li>
+<li>Fagioli borlotti già lessati - 100 g</li>
+<li>Pastina - 40 g</li>
+</ul>
+</div>
+<div class='card'>
+<h3>Opzione 3</h3>
+<ul>
+</ul>
+</div>
+</div></div>
+<div class='pasto'>
+<h2>Cena</h2>
+<div class='opzioni'>
+<div class='card'>
+<h3>Opzione 1 - Scaloppina al limone</h3>
+<ul>
+<li>Pollo o tacchino fette sottili - 200 g</li>
+<li>Farina qb, limone/lime, salvia</li>
+<li>Verdure miste dolci: piselli - 100 g</li>
+<li>Verza e carota (o zucca) - 200 g</li>
+<li>Pane - 30 g</li>
+<li>Cucchiaio olio - 1 g</li>
+</ul>
+</div>
+<div class='card'>
+<h3>Opzione 2</h3>
+<ul>
+</ul>
+</div>
+<div class='card'>
+<h3>Opzione 3</h3>
+<ul>
+</ul>
+</div>
+</div></div>
+</div></div>
+<div id='modal3' class='modal'>
+<div class='modal-content'>
+<span class='close-btn' onclick='chiudiModal(3)'>&times;</span>
+<h2>Giorno 3</h2>
+<div class='pasto'>
+<h2>Colazione</h2>
+<div class='opzioni'>
+<div class='card'>
+<h3>Opzione 1</h3>
+<ul>
+<li>Latte - 200 g</li>
+<li>Caffè amaro</li>
+<li>Alce Nero granola - 10 g</li>
+<li>Avena - 10 g</li>
+</ul>
+</div>
+<div class='card'>
+<h3>Opzione 2</h3>
+<ul>
+<li>Latte - 200 g</li>
+<li>Caffè amaro</li>
+<li>Pane - 50 g</li>
+<li>Marmellata</li>
+</ul>
+</div>
+<div class='card'>
+<h3>Opzione 3</h3>
+<ul>
+<li>Latte - 200 g</li>
+<li>Caffè (1 cucchiaio zucchero)</li>
+<li>Fiocchi di avena - 50 g</li>
+<li>Spolverata cacao amaro</li>
+</ul>
+</div>
+</div></div>
+<div class='pasto'>
+<h2>Pranzo</h2>
+<div class='opzioni'>
+<div class='card'>
+<h3>Opzione 1 - Cous cous con verdure miste dolci</h3>
+<ul>
+<li>Cous cous - 70 g</li>
+<li>Piselli - 100 g</li>
+<li>Verza e carota (o zucca) - 200 g</li>
+<li>Cucchiaio olio - 1 g</li>
+</ul>
+</div>
+<div class='card'>
+<h3>Opzione 2 - Spaghetti al pomodoro</h3>
+<ul>
+<li>Spaghetti - 70 g</li>
+<li>Tonno naturale - 80 g</li>
+<li>Pomarola casalinga (pelati, odori a piacere)</li>
+<li>Finocchi e carote crude</li>
+<li>Cucchiaio olio - 1 g</li>
+<li>Cucchiai Parmigiano - 2 g</li>
+</ul>
+</div>
+<div class='card'>
+<h3>Opzione 3 - Gnocchi zucchine e gamberetti / salmone</h3>
+<ul>
+<li>Gnocchi - 150 g</li>
+<li>Zucchine - 200 g</li>
+<li>Salmone affumicato - 40 g</li>
+<li>Gamberetti - 100 g</li>
+<li>Cucchiaio olio - 1 g</li>
+</ul>
+</div>
+</div></div>
+<div class='pasto'>
+<h2>Cena</h2>
+<div class='opzioni'>
+<div class='card'>
+<h3>Opzione 1 - Tonno fresco alla piastra con insalata</h3>
+<ul>
+<li>Trancio di tonno - 200 g</li>
+<li>Sale, pepe, lime</li>
+<li>Rucola e sedano e lime</li>
+<li>Avocado a dadini - 50 g</li>
+<li>Pane - 60 g</li>
+<li>Cucchiaio olio - 1 g</li>
+</ul>
+</div>
+<div class='card'>
+<h3>Opzione 2</h3>
+<ul>
+</ul>
+</div>
+<div class='card'>
+<h3>Opzione 3</h3>
+<ul>
+</ul>
+</div>
+</div></div>
+</div></div>
+<div id='modal4' class='modal'>
+<div class='modal-content'>
+<span class='close-btn' onclick='chiudiModal(4)'>&times;</span>
+<h2>Giorno 4</h2>
+<div class='pasto'>
+<h2>Colazione</h2>
+<div class='opzioni'>
+<div class='card'>
+<h3>Opzione 1</h3>
+<ul>
+<li>Latte - 200 g</li>
+<li>Caffè amaro</li>
+<li>Alce Nero granola - 10 g</li>
+<li>Avena - 10 g</li>
+</ul>
+</div>
+<div class='card'>
+<h3>Opzione 2</h3>
+<ul>
+<li>Latte - 200 g</li>
+<li>Caffè amaro</li>
+<li>Pane - 50 g</li>
+<li>Marmellata</li>
+</ul>
+</div>
+<div class='card'>
+<h3>Opzione 3</h3>
+<ul>
+<li>Latte - 200 g</li>
+<li>Caffè (1 cucchiaio zucchero)</li>
+<li>Fiocchi di avena - 50 g</li>
+<li>Spolverata cacao amaro</li>
+</ul>
+</div>
+</div></div>
+<div class='pasto'>
+<h2>Pranzo</h2>
+<div class='opzioni'>
+<div class='card'>
+<h3>Opzione 1 - Mozzarella / parmigiano / ricotta / primo sale</h3>
+<ul>
+<li>Mozzarella di mucca - 125 g</li>
+<li>O parmigiano/pecorino - 70 g</li>
+<li>O ricotta di solo siero - 150 g</li>
+<li>O primo sale - 100 g</li>
+<li>Verdure lesse o al vapore: patate - 200 g</li>
+<li>Carote e fagiolini - 200 g</li>
+<li>Cucchiaio olio - 1 g</li>
+</ul>
+</div>
+<div class='card'>
+<h3>Opzione 2</h3>
+<ul>
+</ul>
+</div>
+<div class='card'>
+<h3>Opzione 3</h3>
+<ul>
+</ul>
+</div>
+</div></div>
+<div class='pasto'>
+<h2>Cena</h2>
+<div class='opzioni'>
+<div class='card'>
+<h3>Opzione 1 - Pollo al curry</h3>
+<ul>
+<li>Pollo o tacchino - 150 g</li>
+<li>Curry, latte, uvetta (1 cucchiaino)</li>
+<li>Carote e verza grattate - 100 g</li>
+<li>Pane (oppure 50g di riso) - 60 g</li>
+<li>Cucchiaio olio - 1 g</li>
+</ul>
+</div>
+<div class='card'>
+<h3>Opzione 2</h3>
+<ul>
+</ul>
+</div>
+<div class='card'>
+<h3>Opzione 3</h3>
+<ul>
+</ul>
+</div>
+</div></div>
+</div></div>
+<div id='modal5' class='modal'>
+<div class='modal-content'>
+<span class='close-btn' onclick='chiudiModal(5)'>&times;</span>
+<h2>Giorno 5</h2>
+<div class='pasto'>
+<h2>Colazione</h2>
+<div class='opzioni'>
+<div class='card'>
+<h3>Opzione 1</h3>
+<ul>
+<li>Latte - 200 g</li>
+<li>Caffè amaro</li>
+<li>Alce Nero granola - 10 g</li>
+<li>Avena - 10 g</li>
+</ul>
+</div>
+<div class='card'>
+<h3>Opzione 2</h3>
+<ul>
+<li>Latte - 200 g</li>
+<li>Caffè amaro</li>
+<li>Pane - 50 g</li>
+<li>Marmellata</li>
+</ul>
+</div>
+<div class='card'>
+<h3>Opzione 3</h3>
+<ul>
+<li>Latte - 200 g</li>
+<li>Caffè (1 cucchiaio zucchero)</li>
+<li>Fiocchi di avena - 50 g</li>
+<li>Spolverata cacao amaro</li>
+</ul>
+</div>
+</div></div>
+<div class='pasto'>
+<h2>Pranzo</h2>
+<div class='opzioni'>
+<div class='card'>
+<h3>Opzione 1 - Tonno, pomodori e fagioli</h3>
+<ul>
+<li>Tonno - 80 g</li>
+<li>Fagioli lessati - 150 g</li>
+<li>Pomodorini, rucola e cipolla</li>
+<li>Pane - 40 g</li>
+<li>Cucchiaio olio - 1 g</li>
+</ul>
+</div>
+<div class='card'>
+<h3>Opzione 2 - Spaghetti al tonno e pomodoro</h3>
+<ul>
+<li>Spaghetti - 70 g</li>
+<li>Tonno naturale - 80 g</li>
+<li>Pomarola casalinga (pelati, odori a piacere)</li>
+<li>Finocchi e carote crude</li>
+<li>Cucchiaio olio - 1 g</li>
+</ul>
+</div>
+<div class='card'>
+<h3>Opzione 3</h3>
+<ul>
+</ul>
+</div>
+</div></div>
+<div class='pasto'>
+<h2>Cena</h2>
+<div class='opzioni'>
+<div class='card'>
+<h3>Opzione 1 - Salmone al forno con verdure</h3>
+<ul>
+<li>Trancio di salmone - 200 g</li>
+<li>Patate - 200 g</li>
+<li>Carote e cipolle rosse - 200 g</li>
+<li>Origano, timo e spezie</li>
+<li>Cucchiaio olio - 1 g</li>
+</ul>
+</div>
+<div class='card'>
+<h3>Opzione 2</h3>
+<ul>
+</ul>
+</div>
+<div class='card'>
+<h3>Opzione 3</h3>
+<ul>
+</ul>
+</div>
+</div></div>
+</div></div>
+<div id='modal6' class='modal'>
+<div class='modal-content'>
+<span class='close-btn' onclick='chiudiModal(6)'>&times;</span>
+<h2>Giorno 6</h2>
+<div class='pasto'>
+<h2>Colazione</h2>
+<div class='opzioni'>
+<div class='card'>
+<h3>Opzione 1</h3>
+<ul>
+<li>Latte - 200 g</li>
+<li>Caffè amaro</li>
+<li>Alce Nero granola - 10 g</li>
+<li>Avena - 10 g</li>
+</ul>
+</div>
+<div class='card'>
+<h3>Opzione 2</h3>
+<ul>
+<li>Latte - 200 g</li>
+<li>Caffè amaro</li>
+<li>Pane - 50 g</li>
+<li>Marmellata</li>
+</ul>
+</div>
+<div class='card'>
+<h3>Opzione 3</h3>
+<ul>
+<li>Latte - 200 g</li>
+<li>Caffè (1 cucchiaio zucchero)</li>
+<li>Fiocchi di avena - 50 g</li>
+<li>Spolverata cacao amaro</li>
+</ul>
+</div>
+</div></div>
+<div class='pasto'>
+<h2>Pranzo</h2>
+<div class='opzioni'>
+<div class='card'>
+<h3>Opzione 1 - Insalata di avocado e gamberetti</h3>
+<ul>
+<li>Gamberetti sgusciati - 200 g</li>
+<li>Salmone affumicato - 50 g</li>
+<li>Avocado - 50 g</li>
+<li>Rucola, pomodorini - 200 g</li>
+<li>Lime</li>
+<li>Pane - 60 g</li>
+<li>Cucchiaio olio - 1 g</li>
+</ul>
+</div>
+<div class='card'>
+<h3>Opzione 2</h3>
+<ul>
+</ul>
+</div>
+<div class='card'>
+<h3>Opzione 3</h3>
+<ul>
+</ul>
+</div>
+</div></div>
+<div class='pasto'>
+<h2>Cena</h2>
+<div class='opzioni'>
+<div class='card'>
+<h3>Opzione 1 - Libera</h3>
+<ul>
+</ul>
+</div>
+<div class='card'>
+<h3>Opzione 2 - Libera</h3>
+<ul>
+</ul>
+</div>
+<div class='card'>
+<h3>Opzione 3 - Libera</h3>
+<ul>
+</ul>
+</div>
+</div></div>
+</div></div>
+<div id='modal7' class='modal'>
+<div class='modal-content'>
+<span class='close-btn' onclick='chiudiModal(7)'>&times;</span>
+<h2>Giorno 7</h2>
+<div class='pasto'>
+<h2>Colazione</h2>
+<div class='opzioni'>
+<div class='card'>
+<h3>Opzione 1</h3>
+<ul>
+<li>Latte - 200 g</li>
+<li>Caffè amaro</li>
+<li>Alce Nero granola - 10 g</li>
+<li>Avena - 10 g</li>
+</ul>
+</div>
+<div class='card'>
+<h3>Opzione 2</h3>
+<ul>
+<li>Latte - 200 g</li>
+<li>Caffè amaro</li>
+<li>Pane - 50 g</li>
+<li>Marmellata</li>
+</ul>
+</div>
+<div class='card'>
+<h3>Opzione 3</h3>
+<ul>
+<li>Latte - 200 g</li>
+<li>Caffè (1 cucchiaio zucchero)</li>
+<li>Fiocchi di avena - 50 g</li>
+<li>Spolverata cacao amaro</li>
+</ul>
+</div>
+</div></div>
+<div class='pasto'>
+<h2>Pranzo</h2>
+<div class='opzioni'>
+<div class='card'>
+<h3>Opzione 1 - Risotto radicchio e parmigiano</h3>
+<ul>
+<li>Riso per risotti - 70 g</li>
+<li>Radicchio - 200 g</li>
+<li>Vino rosso</li>
+<li>Parmigiano grattato - 30 g</li>
+<li>Cucchiaio olio - 1 g</li>
+</ul>
+</div>
+<div class='card'>
+<h3>Opzione 2</h3>
+<ul>
+</ul>
+</div>
+<div class='card'>
+<h3>Opzione 3</h3>
+<ul>
+</ul>
+</div>
+</div></div>
+<div class='pasto'>
+<h2>Cena</h2>
+<div class='opzioni'>
+<div class='card'>
+<h3>Opzione 1 - Pollo al cartoccio con verdure</h3>
+<ul>
+<li>Pezzo di pollo da 300gr lordi - 300 g</li>
+<li>Rosmarino, limone, pepe</li>
+<li>Patate - 200 g</li>
+<li>Peperoni, carote, cipolle - 200 g</li>
+<li>Cucchiai d'olio - 2 g</li>
+</ul>
+</div>
+<div class='card'>
+<h3>Opzione 2</h3>
+<ul>
+</ul>
+</div>
+<div class='card'>
+<h3>Opzione 3</h3>
+<ul>
+</ul>
+</div>
+</div></div>
+</div></div>
+<script>
+function apriModal(n){document.getElementById('modal'+n).style.display='flex';}
+function chiudiModal(n){document.getElementById('modal'+n).style.display='none';}
+window.onclick=function(e){for(var i=1;i<=7;i++){var m=document.getElementById('modal'+i);if(e.target===m)m.style.display='none';}}
+</script>
+</body></html>
